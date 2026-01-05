@@ -44,4 +44,9 @@ public class TodoController {
         todoService.delete(id);
     }
 
+    @DeleteMapping()
+    public void clear(){
+        todoService.deleteAllTasks();
+    }
+
 }
