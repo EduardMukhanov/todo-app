@@ -44,4 +44,6 @@ public class Todo {
         this.status = status;
     }
 
+    public Todo() {}
+
 }
