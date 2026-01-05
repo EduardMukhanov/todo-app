@@ -1,5 +1,6 @@
 package com.eduardmukhanov.todo_app.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -11,7 +12,9 @@ public class Todo {
     private Integer id;
     private String title;
     private Boolean status;
-    private LocalDateTime createdAt;
+    @Column(nullable = false, updatable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public Integer getId() {
         return id;
@@ -41,7 +44,4 @@ public class Todo {
         this.status = status;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 }

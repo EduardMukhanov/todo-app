@@ -36,7 +36,6 @@ public class TodoController {
         Todo t = todoService.findById(id);
         t.setTitle(todo.getTitle());
         t.setStatus(todo.getStatus());
-        t.setCreatedAt(todo.getCreatedAt());
         return todoService.save(t);
     }
 
