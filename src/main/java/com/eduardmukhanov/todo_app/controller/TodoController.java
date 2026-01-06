@@ -32,11 +32,8 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public Todo updateExistingTaskById(@PathVariable Integer id, @RequestBody Todo todo){
-        Todo t = todoService.findById(id);
-        t.setTitle(todo.getTitle());
-        t.setStatus(todo.getStatus());
-        return todoService.save(t);
+    public Todo updateTaskById(@PathVariable Integer id, @RequestBody Todo todo){
+        return todoService.updateExistingTaskById(id, todo);
     }
 
     @DeleteMapping("/{id}")

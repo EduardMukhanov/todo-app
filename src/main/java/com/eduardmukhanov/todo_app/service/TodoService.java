@@ -3,7 +3,6 @@ package com.eduardmukhanov.todo_app.service;
 import com.eduardmukhanov.todo_app.entity.Todo;
 import com.eduardmukhanov.todo_app.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +28,15 @@ public class TodoService {
 
     public Todo save(Todo todo){
         return todoRepository.save(todo);
+    }
+
+    public Todo updateExistingTaskById(Integer id, Todo todo){
+        Todo existing = todoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("todo with id " + id + " not found")
+                );
+        existing.setTitle(todo.getTitle());
+        existing.setStatus(todo.getStatus());
+        return todoRepository.save(existing);
     }
 
     public void delete(Integer id){
